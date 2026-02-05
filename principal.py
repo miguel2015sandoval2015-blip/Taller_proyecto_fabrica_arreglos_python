@@ -1,19 +1,21 @@
-from empleado_mod import empleado_modelo
-from api_BD import Api_BD
-from Api_BD_maquinas import Api_BD_maquinas
+from Base_datos_empleados import Base_datos_empleados
+from Empleado_modelo import Empleado_modelo
 
-#codigo principal
+#crear la base de datos de empleados
+obj_bd_empleado_lista = Base_datos_empleados()
 
-#creo base de datos de empleados
-obj_Api = Api_BD()
-obj_Api_maquina = Api_BD_maquinas()
-obj_Api_maquina.imprimir_info()
-print(obj_Api_maquina.buscar_info())
-#creo el objecto que voy aguardar
-obj_empleado= empleado_mod("Miguel","ortega","1093593748","3118353246")
-obj_empleado2=empleado_mod("peter","talarga","7654326544","3222223456")
-obj_empleado3=empleado_mod("sarah","connor","12345432223","3222222313")
-obj_Api.agregar_empleado(obj_empleado)
-obj_Api.agregar_empleado(obj_empleado2)
-obj_Api.agregar_empleado(obj_empleado3)
-obj_Api.imprimir_api()
+#crear el objecto que se va a guardar
+obj_empleado1 = Empleado_modelo("robert","ramirez","65432345")
+obj_empleado2 = Empleado_modelo("sarah","connor","98765434")
+
+#crear una lista para guardar masivamente
+lista_empleados_nuevos = [obj_empleado2,obj_empleado1]
+
+#llamo al metodo para guardar el empleado
+obj_bd_empleado_lista.guardar_empleado(obj_empleado1)
+obj_bd_empleado_lista.guardar_empleado(obj_empleado2)
+
+obj_bd_empleado_lista.extender_varios_empleados(lista_empleados_nuevos)
+
+#limpiar toda la lista de empleados
+obj_bd_empleado_lista.imprimir_info()
